@@ -31,7 +31,6 @@
         }
         .theme-toggle:hover { background: #d4af37; color: #000; }
         
-        /* تصميم أيقونة الكارت مع الـ Badge */
         .cart-container { position: relative; cursor: pointer; display: flex; align-items: center; }
         .cart-icon { font-size: 28px; transition: 0.3s; }
         .cart-icon:hover { transform: scale(1.2); }
@@ -63,23 +62,50 @@
     </header>
 
     <div class="grid" id="perfume-grid">
-        <div class="card" onclick="location.href='product.html?id=1'"><img src="images/perfume 1.jpg"><h3>Stronger With You</h3></div>
-        <div class="card" onclick="location.href='product.html?id=2'"><img src="images/perfume 2.jpg"><h3>Sauvage</h3></div>
-        <div class="card" onclick="location.href='product.html?id=3'"><img src="images/perfume 3.webp"><h3>Valentino</h3></div>
-        <div class="card" onclick="location.href='product.html?id=4'"><img src="images/perfume 4.webp"><h3>Eclaire</h3></div>
-        <div class="card" onclick="location.href='product.html?id=5'"><img src="images/perfume 5.webp"><h3>Versace Eros</h3></div>
-        <div class="card" onclick="location.href='product.html?id=6'"><img src="images/perfume 6.webp"><h3>Myself</h3></div>
-        <div class="card" onclick="location.href='product.href?id=7'"><img src="images/perfume 7.jpg"><h3>Libre</h3></div>
-        <div class="card" onclick="location.href='product.html?id=8'"><img src="images/perfume 8.jpg"><h3>Burberry</h3></div>
-        <div class="card" onclick="location.href='product.html?id=9'"><img src="images/perfume 9.webp"><h3>Xerjoff</h3></div>
-        <div class="card" onclick="location.href='product.html?id=10'"><img src="images/perfume 10.webp"><h3>Wild Colt</h3></div>
-        <div class="card" onclick="location.href='product.html?id=11'"><img src="images/perfume 11.webp"><h3>Acqua Di Gio</h3></div>
-        <div class="card" onclick="location.href='product.html?id=12'"><img src="images/perfume 12.webp"><h3>Jean Paul</h3></div>
-        <div class="card" onclick="location.href='product.html?id=13'"><img src="images/perfume 13.webp"><h3>Ombre Nomade</h3></div>
+        <!-- الـ JavaScript هيملا المكان ده أوتوماتيكياً -->
     </div>
 
     <script>
-        // دالة البحث
+        const products = [
+            { id: 1, name: "Stronger With You", img: "images/perfume 1.jpg" },
+            { id: 2, name: "Sauvage", img: "images/perfume 2.jpg" },
+            { id: 3, name: "Valentino", img: "images/perfume 3.webp" },
+            { id: 4, name: "Eclaire", img: "images/perfume 4.webp" },
+            { id: 5, name: "Versace Eros", img: "images/perfume 5.webp" },
+            { id: 6, name: "Myself", img: "images/perfume 6.webp" },
+            { id: 7, name: "Libre", img: "images/perfume 7.jpg" },
+            { id: 8, name: "Burberry", img: "images/perfume 8.jpg" },
+            { id: 9, name: "Xerjoff", img: "images/perfume 9.webp" },
+            { id: 10, name: "Wild Colt", img: "images/perfume 10.webp" },
+            { id: 11, name: "Acqua Di Gio", img: "images/perfume 11.webp" },
+            { id: 12, name: "Jean Paul", img: "images/perfume 12.webp" },
+            { id: 13, name: "Ombre Nomade", img: "images/perfume 13.webp" },
+            { id: 14, name: "Assaf Garden Musk", img: "images/perfume 14.jpeg" },
+            { id: 15, name: "Black Afgano", img: "images/perfume 15.jpeg" },
+            { id: 16, name: "LV Moon Tale", img: "images/perfume 16.jpeg" },
+            { id: 17, name: "Dominican Tobacco", img: "images/perfume 17.jpeg" },
+            { id: 18, name: "Lattafa Sehr", img: "images/perfume 18.jpeg" },
+            { id: 19, name: "Black Carbon Diamond", img: "images/perfume 19.jpeg" },
+            { id: 20, name: "Yara Candy", img: "images/perfume 20.jpeg" },
+            { id: 21, name: "Yara Original", img: "images/perfume 21.jpeg" },
+            { id: 22, name: "Mexican Tobacco", img: "images/perfume 22.jpeg" },
+            { id: 23, name: "Tom Ford Tobacco Vanille", img: "images/perfume 23.jpeg" },
+            { id: 24, name: "Stronger With You Tobacco", img: "images/perfume 24.jpeg" },
+            { id: 25, name: "Xerjoff More Than Words", img: "images/perfume 26.jpeg" },
+            { id: 26, name: "Bleu de Chanel", img: "images/perfume 25.jpeg" },
+            { id: 27, name: "Valentino Donna", img: "images/perfume 27.jpeg" }
+        ];
+
+        const grid = document.getElementById('perfume-grid');
+        products.forEach(p => {
+            grid.innerHTML += `
+                <div class="card" onclick="location.href='product.html?id=${p.id}'">
+                    <img src="${p.img}">
+                    <h3>${p.name}</h3>
+                </div>
+            `;
+        });
+
         function searchPerfume() {
             let input = document.getElementById('search').value.toLowerCase();
             let cards = document.getElementsByClassName('card');
@@ -89,14 +115,12 @@
             }
         }
 
-        // دالة التبديل
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
             localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
         }
         if(localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); }
 
-        // دالة تحديث عدد الكارت
         function updateCartCount() {
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
             let countElement = document.getElementById('cart-count');

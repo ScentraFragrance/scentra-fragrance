@@ -48,7 +48,6 @@
             let actions = document.getElementById('cart-actions');
             let total = 0;
 
-            // إذا كان الكارت فارغاً
             if (cart.length === 0) {
                 list.innerHTML = `
                     <div style="text-align: center; padding: 50px;">
@@ -63,7 +62,6 @@
                 return;
             }
 
-            // عرض المنتجات
             list.innerHTML = '';
             cart.forEach((item, index) => {
                 total += item.price;
@@ -87,7 +85,7 @@
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
             cart.splice(index, 1);
             localStorage.setItem('cart', JSON.stringify(cart));
-            loadCart(); // تحديث الصفحة فوراً
+            loadCart();
         }
 
         function sendToWhatsApp() {

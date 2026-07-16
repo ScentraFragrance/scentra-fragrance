@@ -66,19 +66,33 @@
 
     <script>
         const info = {
-            1: {name: "Stronger With You", img: "images/perfume 1.jpg", desc: "A warm and spicy blend featuring Cardamom, Pink Pepper, and Violet leaves. The heart is dominated by Sage, base settles into Vanilla, Chestnut, and Cedar.", perf: "Incredible longevity (8-10 hours). Strong projection, perfect for evening wear."},
-            2: {name: "Sauvage", img: "images/perfume 2.jpg", desc: "A burst of Calabrian Bergamot and Pepper. Heart of Lavender, Sichuan Pepper, and Vetiver. Base of smooth Ambroxan and Cedar.", perf: "Versatile beast! Lasts 8-9 hours with massive projection."},
-            3: {name: "Valentino", img: "images/perfume 3.webp", desc: "Opening with Ginger and Sage, evolving into a heart of Iris and Lavender, finishing with a base of masculine Leather and Wood.", perf: "Sophisticated and clean. 7-8 hours of longevity. Moderate trail."},
-            4: {name: "Eclaire", img: "images/perfume 4.webp", desc: "A gourmand dream: Pear, Pink Pepper, and Caramel. Heart features Jasmine and Gardenia, base of Vanilla, Almond, and Tonka Bean.", perf: "Delicious and cozy. Lasts about 6-7 hours. Great for daily wear."},
-            5: {name: "Versace Eros", img: "images/perfume 5.webp", desc: "Mint oil, Green Apple, and Italian Lemon. Heart of Tonka Bean, Geranium, and Ambroxan. Base of Vanilla and Cedarwood.", perf: "The king of the club. 8+ hours of intense projection. High compliments."},
-            6: {name: "Myself", img: "images/perfume 6.webp", desc: "Modern and fresh: Bergamot, Orange Blossom, and Patchouli. A clean, soapy, and highly professional DNA.", perf: "Excellent signature scent. 7-8 hours longevity. Crisp and uplifting."},
-            7: {name: "Libre", img: "images/perfume 7.jpg", desc: "Lavender from France combined with Moroccan Orange Blossom. Sensual Vanilla, Musk, and Ambergris.", perf: "Elegant and floral. Long-lasting, 8 hours+ with great confidence."},
-            8: {name: "Burberry", img: "images/perfume 8.jpg", desc: "Mint, Cardamom, and Lavender blend into a warm, woody base. Simple, effective, and very charming.", perf: "Classic and comforting. 6-7 hours. Soft projection, very intimate."},
-            9: {name: "Xerjoff", img: "images/perfume 9.webp", desc: "Luxury in a bottle. Sparkling Lemon, Jasmine, and intense Amber. A rich, opulent scent profile.", perf: "10+ hours longevity. Massive projection. High-end for special occasions."},
-            10: {name: "Wild Colt", img: "images/perfume 10.webp", desc: "Raw Leather, Jasmine, and mysterious Oud. A bold combination for those who want to stand out.", perf: "Aggressive and daring. Lasts all day long (9+ hours). Very powerful."},
-            11: {name: "Acqua Di Gio", img: "images/perfume 11.webp", desc: "Marine notes, Lime, Jasmine, and Cedar. It’s like a breeze from the ocean, refreshing and clean.", perf: "The ultimate fresh scent. 5-6 hours of clean life. Perfect for summer."},
-            12: {name: "Jean Paul", img: "images/perfume 12.webp", desc: "Iconic Mint and Cinnamon. Sweet, spicy middle of Lavender and Orange Blossom, ending with warm Vanilla and Sandalwood.", perf: "Legendary projection. 8-9 hours longevity. Sweet scent that dominates."},
-            13: {name: "Ombre Nomade", img: "images/perfume 13.webp", desc: "The ultimate masterpiece: Raspberry, Rose, and intense smoky Oud. A deep, dark, and mesmerizing experience.", perf: "Beast mode! 12+ hours longevity. Massive projection that lasts for days."}
+            1: {name: "Stronger With You", img: "images/perfume 1.jpg", desc: "Warm and spicy with Cardamom and Vanilla.", perf: "8-10 hours, strong."},
+            2: {name: "Sauvage", img: "images/perfume 2.jpg", desc: "Fresh Bergamot and Pepper.", perf: "8-9 hours, beast mode."},
+            3: {name: "Valentino", img: "images/perfume 3.webp", desc: "Ginger, Iris, and Leather.", perf: "7-8 hours, sophisticated."},
+            4: {name: "Eclaire", img: "images/perfume 4.webp", desc: "Caramel, Pear, and Vanilla.", perf: "6-7 hours, gourmand."},
+            5: {name: "Versace Eros", img: "images/perfume 5.webp", desc: "Mint, Green Apple, and Tonka Bean.", perf: "8+ hours, vibrant."},
+            6: {name: "Myself", img: "images/perfume 6.webp", desc: "Bergamot and Patchouli.", perf: "7-8 hours, crisp."},
+            7: {name: "Libre", img: "images/perfume 7.jpg", desc: "Lavender and Orange Blossom.", perf: "8+ hours, elegant."},
+            8: {name: "Burberry", img: "images/perfume 8.jpg", desc: "Mint and Lavender.", perf: "6-7 hours, classic."},
+            9: {name: "Xerjoff", img: "images/perfume 9.webp", desc: "Lemon and intense Amber.", perf: "10+ hours, luxurious."},
+            10: {name: "Wild Colt", img: "images/perfume 10.webp", desc: "Leather and Oud.", perf: "9+ hours, bold."},
+            11: {name: "Acqua Di Gio", img: "images/perfume 11.webp", desc: "Marine notes and Lime.", perf: "5-6 hours, refreshing."},
+            12: {name: "Jean Paul", img: "images/perfume 12.webp", desc: "Mint and Cinnamon.", perf: "8-9 hours, sweet."},
+            13: {name: "Ombre Nomade", img: "images/perfume 13.webp", desc: "Raspberry, Rose, and smoky Oud.", perf: "12+ hours, beast."},
+            14: {name: "Assaf Garden Musk", img: "images/perfume 14.jpeg", desc: "Soft clean musk.", perf: "6-7 hours, soothing."},
+            15: {name: "Black Afgano", img: "images/perfume 15.jpeg", desc: "Incense, Coffee, and Oud.", perf: "10+ hours, dark."},
+            16: {name: "LV Moon Tale", img: "images/perfume 16.jpeg", desc: "Night-blooming flowers.", perf: "8-9 hours, whimsical."},
+            17: {name: "Dominican Tobacco", img: "images/perfume 17.jpeg", desc: "Tobacco leaf and warm spices.", perf: "9-10 hours, rugged."},
+            18: {name: "Lattafa Sehr", img: "images/perfume 18.jpeg", desc: "Rich oriental spices.", perf: "10+ hours, powerful."},
+            19: {name: "Black Carbon Diamond", img: "images/perfume 19.jpeg", desc: "Mineral facets and woods.", perf: "8-9 hours, modern."},
+            20: {name: "Yara Candy", img: "images/perfume 20.jpeg", desc: "Caramel and red fruits.", perf: "6-7 hours, playful."},
+            21: {name: "Yara Original", img: "images/perfume 21.jpeg", desc: "Tropical fruits and Vanilla.", perf: "7-8 hours, creamy."},
+            22: {name: "Mexican Tobacco", img: "images/perfume 22.jpeg", desc: "Smoky, spicy tobacco.", perf: "9+ hours, intense."},
+            23: {name: "Tom Ford Tobacco Vanille", img: "images/perfume 23.jpeg", desc: "Tobacco leaf and cocoa.", perf: "10-12 hours, opulent."},
+            24: {name: "Stronger With You Tobacco", img: "images/perfume 24.jpeg", desc: "Smoky sweet tobacco twist.", perf: "9+ hours, cozy."},
+            25: {name: "Xerjoff More Than Words", img: "images/perfume 26.jpeg", desc: "Rose, Oud, and Amber.", perf: "12+ hours, poetic."},
+            26: {name: "Bleu de Chanel", img: "images/perfume 25.jpeg", desc: "Woody and aromatic.", perf: "8-9 hours, professional."},
+            27: {name: "Valentino Donna", img: "images/perfume 27.jpeg", desc: "Jasmine and Vanilla.", perf: "7-8 hours, feminine."}
         };
 
         const id = new URLSearchParams(window.location.search).get('id');
