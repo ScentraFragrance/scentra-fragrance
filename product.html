@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Discover the best luxury perfume collection at Scentra. Shop your favorite scents and enjoy premium fragrances in Egypt.">
+    <title>Scentra - Fragrance Details</title>
+    <style>
+        body { background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 40px; transition: 0.3s; }
+        body.light-mode { background: #f4f4f4; color: #333; }
+        
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-btn { cursor: pointer; color: #d4af37; font-weight: bold; border: 1px solid #d4af37; padding: 10px 20px; border-radius: 8px; transition: 0.3s; }
+        .back-btn:hover { background: #d4af37; color: #000; }
+        .cart-icon { cursor: pointer; font-size: 35px; transition: 0.4s; }
+        .cart-icon:hover { transform: scale(1.2); }
+
+        .container { display: flex; gap: 50px; }
+        .img-box { width: 450px; height: 550px; border-radius: 20px; object-fit: cover; border: 2px solid #333; }
+        
+        .info-card { background: #111; padding: 30px; border-radius: 20px; border-left: 6px solid #d4af37; margin-bottom: 25px; line-height: 1.6; }
+        body.light-mode .info-card { background: #fff; border: 1px solid #ddd; }
+
+        .price-grid { display: flex; gap: 20px; margin-bottom: 30px; }
+        .price-card { flex: 1; border: 2px solid #444; padding: 20px; border-radius: 15px; cursor: pointer; text-align: center; background: #111; transition: 0.4s ease; }
+        .price-card:hover { transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 10px 20px rgba(212,175,55,0.2); }
+        .price-card.selected { border-color: #d4af37; transform: scale(1.05); background: #222; }
+        body.light-mode .price-card { background: #fff; border: 1px solid #ddd; }
+
+        .add-btn { background: #d4af37; color: #000; padding: 20px; border: none; border-radius: 10px; width: 100%; cursor: pointer; font-weight: bold; font-size: 1.3em; transition: 0.3s; }
+        .add-btn:hover { background: #b8962d; }
+        
+        #toast { position: fixed; top: 20px; right: -400px; background: #d4af37; color: #000; padding: 15px 25px; border-radius: 10px; font-weight: bold; transition: 0.5s; z-index: 1000; }
+        #toast.show { right: 20px; }
+    </style>
+</head>
+<body>
+
+    <script>
+        if(localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); }
+    </script>
+    
+    <div id="toast">Added to Cart Successfully! ✅😊</div>
+
+    <div class="top-nav">
+        <div class="back-btn" onclick="location.href='index.html'">← Back to Store</div>
+        <div class="cart-icon" onclick="location.href='cart.html'">🛒</div>
+    </div>
+
+    <div class="container">
+        <img id="p-img" class="img-box" src="" alt="Perfume">
+        <div style="flex: 1;">
+            <h1 id="p-name">Loading...</h1>
+            <div class="info-card">
+                <h3 style="color:#d4af37;">Fragrance Notes & Profile</h3>
+                <p id="p-desc"></p>
+                <h3 style="color:#d4af37;">Performance & Sillage</h3>
+                <p id="p-perf"></p>
+            </div>
+            <div class="price-grid">
+                <div class="price-card selected" id="c1" onclick="select(600, 'With Box', 'c1')"><h3>600 EGP</h3><p>With Box</p></div>
+                <div class="price-card" id="c2" onclick="select(500, 'Without Box', 'c2')"><h3>500 EGP</h3><p>Without Box</p></div>
+            </div>
+            <button class="add-btn" onclick="addToCart()">ADD TO CART 🛒</button>
+        </div>
+    </div>
+
+    <script>
+        const info = {
+            1: {name: "Stronger With You", img: "images/perfume 1.jpg", desc: "A warm and spicy blend featuring Cardamom, Pink Pepper, and Violet leaves. The heart is dominated by Sage, base settles into Vanilla, Chestnut, and Cedar.", perf: "Incredible longevity (8-10 hours). Strong projection, perfect for evening wear."},
+            2: {name: "Sauvage", img: "images/perfume 2.jpg", desc: "A burst of Calabrian Bergamot and Pepper. Heart of Lavender, Sichuan Pepper, and Vetiver. Base of smooth Ambroxan and Cedar.", perf: "Versatile beast! Lasts 8-9 hours with massive projection."},
+            3: {name: "Valentino", img: "images/perfume 3.webp", desc: "Opening with Ginger and Sage, evolving into a heart of Iris and Lavender, finishing with a base of masculine Leather and Wood.", perf: "Sophisticated and clean. 7-8 hours of longevity. Moderate trail."},
+            4: {name: "Eclaire", img: "images/perfume 4.webp", desc: "A gourmand dream: Pear, Pink Pepper, and Caramel. Heart features Jasmine and Gardenia, base of Vanilla, Almond, and Tonka Bean.", perf: "Delicious and cozy. Lasts about 6-7 hours. Great for daily wear."},
+            5: {name: "Versace Eros", img: "images/perfume 5.webp", desc: "Mint oil, Green Apple, and Italian Lemon. Heart of Tonka Bean, Geranium, and Ambroxan. Base of Vanilla and Cedarwood.", perf: "The king of the club. 8+ hours of intense projection. High compliments."},
+            6: {name: "Myself", img: "images/perfume 6.webp", desc: "Modern and fresh: Bergamot, Orange Blossom, and Patchouli. A clean, soapy, and highly professional DNA.", perf: "Excellent signature scent. 7-8 hours longevity. Crisp and uplifting."},
+            7: {name: "Libre", img: "images/perfume 7.jpg", desc: "Lavender from France combined with Moroccan Orange Blossom. Sensual Vanilla, Musk, and Ambergris.", perf: "Elegant and floral. Long-lasting, 8 hours+ with great confidence."},
+            8: {name: "Burberry", img: "images/perfume 8.jpg", desc: "Mint, Cardamom, and Lavender blend into a warm, woody base. Simple, effective, and very charming.", perf: "Classic and comforting. 6-7 hours. Soft projection, very intimate."},
+            9: {name: "Xerjoff", img: "images/perfume 9.webp", desc: "Luxury in a bottle. Sparkling Lemon, Jasmine, and intense Amber. A rich, opulent scent profile.", perf: "10+ hours longevity. Massive projection. High-end for special occasions."},
+            10: {name: "Wild Colt", img: "images/perfume 10.webp", desc: "Raw Leather, Jasmine, and mysterious Oud. A bold combination for those who want to stand out.", perf: "Aggressive and daring. Lasts all day long (9+ hours). Very powerful."},
+            11: {name: "Acqua Di Gio", img: "images/perfume 11.webp", desc: "Marine notes, Lime, Jasmine, and Cedar. It’s like a breeze from the ocean, refreshing and clean.", perf: "The ultimate fresh scent. 5-6 hours of clean life. Perfect for summer."},
+            12: {name: "Jean Paul", img: "images/perfume 12.webp", desc: "Iconic Mint and Cinnamon. Sweet, spicy middle of Lavender and Orange Blossom, ending with warm Vanilla and Sandalwood.", perf: "Legendary projection. 8-9 hours longevity. Sweet scent that dominates."},
+            13: {name: "Ombre Nomade", img: "images/perfume 13.webp", desc: "The ultimate masterpiece: Raspberry, Rose, and intense smoky Oud. A deep, dark, and mesmerizing experience.", perf: "Beast mode! 12+ hours longevity. Massive projection that lasts for days."}
+        };
+
+        const id = new URLSearchParams(window.location.search).get('id');
+        const p = info[id];
+        let price = 600; let type = 'With Box';
+
+        if(p) {
+            document.getElementById('p-name').innerText = p.name;
+            document.getElementById('p-img').src = p.img;
+            document.getElementById('p-desc').innerText = p.desc;
+            document.getElementById('p-perf').innerText = p.perf;
+        }
+
+        function select(pr, ty, id) {
+            price = pr; type = ty;
+            document.querySelectorAll('.price-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById(id).classList.add('selected');
+        }
+
+        function addToCart() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push({name: p.name, price: price, type: type, img: p.img});
+            localStorage.setItem('cart', JSON.stringify(cart));
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+    </script>
+</body>
+</html>

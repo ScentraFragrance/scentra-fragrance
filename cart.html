@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="description" content="Discover the best luxury perfume collection at Scentra. Shop your favorite scents and enjoy premium fragrances in Egypt.">
+    <title>Scentra - My Cart</title>
+    <style>
+        body { background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 40px; }
+        h1 { text-align: center; margin-bottom: 30px; }
+        
+        .cart-item { background: #111; padding: 20px; margin-bottom: 15px; border-radius: 15px; display: flex; align-items: center; gap: 20px; border: 1px solid #333; }
+        .cart-item img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; }
+        
+        .total-price { font-size: 24px; color: #d4af37; margin: 20px 0; text-align: center; font-weight: bold; }
+        
+        .add-btn { background: #25d366; color: white; padding: 15px 40px; border: none; border-radius: 10px; font-size: 1.2em; cursor: pointer; transition: 0.3s; display: block; margin: 0 auto; }
+        .add-btn:hover { background: #1eb154; transform: scale(1.02); }
+        
+        .remove-btn { background: #ff4d4d; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .remove-btn:hover { background: #e04343; }
+        
+        .back-btn { 
+            display: inline-block; background: #d4af37; color: #000; 
+            padding: 15px 30px; border-radius: 10px; font-weight: bold; 
+            text-decoration: none; transition: 0.3s; margin-top: 20px;
+        }
+        .back-btn:hover { background: #b8962d; transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+    <h1>🛒 Your Cart</h1>
+    <div id="cart-list"></div>
+    <div id="total" class="total-price"></div>
+    
+    <div id="cart-actions" style="display: none; text-align: center;">
+        <button class="add-btn" onclick="sendToWhatsApp()">Complete Purchase via WhatsApp 💬</button>
+        <br>
+        <a href="index.html" style="color: #666; text-decoration: none;">Continue Shopping</a>
+    </div>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let list = document.getElementById('cart-list');
+            let totalDiv = document.getElementById('total');
+            let actions = document.getElementById('cart-actions');
+            let total = 0;
+
+            // إذا كان الكارت فارغاً
+            if (cart.length === 0) {
+                list.innerHTML = `
+                    <div style="text-align: center; padding: 50px;">
+                        <div style="font-size: 80px; margin-bottom: 20px;">🛒</div>
+                        <h2 style="color: #fff;">Your cart is empty!</h2>
+                        <p style="color: #aaa; margin-bottom: 30px;">Looks like you haven't added any perfume yet.</p>
+                        <a href="index.html" class="back-btn">Start Shopping Now</a>
+                    </div>
+                `;
+                totalDiv.innerText = '';
+                actions.style.display = 'none';
+                return;
+            }
+
+            // عرض المنتجات
+            list.innerHTML = '';
+            cart.forEach((item, index) => {
+                total += item.price;
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.img}">
+                        <div>
+                            <h3>${item.name}</h3>
+                            <p>${item.type} - ${item.price} EGP</p>
+                            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            totalDiv.innerText = `Total: ${total} EGP`;
+            actions.style.display = 'block';
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart(); // تحديث الصفحة فوراً
+        }
+
+        function sendToWhatsApp() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let message = "Hello, I want to order these items:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                message += `* ${item.name} (${item.type}) - ${item.price} EGP\n`;
+                total += item.price;
+            });
+            message += `\n*Total: ${total} EGP*`;
+            
+            let phoneNumber = "201027799171"; 
+            let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        loadCart();
+    </script>
+</body>
+</html>

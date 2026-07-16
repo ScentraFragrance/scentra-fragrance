@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="description" content="Discover the best luxury perfume collection at Scentra. Shop your favorite scents and enjoy premium fragrances in Egypt.">
+    <title>Scentra - Luxury Fragrances In Egypt </title>
+    <style>
+        body { background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; transition: 0.3s; }
+        body.light-mode { background: #f4f4f4; color: #333; }
+        
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 25px; background: #111; border-radius: 15px; 
+            margin-bottom: 30px; border: 1px solid #333; gap: 15px;
+        }
+        body.light-mode header { background: #fff; border: 1px solid #ddd; }
+        
+        .brand { color: #d4af37; font-size: 24px; font-weight: bold; white-space: nowrap; }
+        
+        .search-bar { 
+            padding: 10px; border-radius: 20px; border: 1px solid #444; 
+            background: #222; color: #fff; flex-grow: 1; outline: none; margin: 0 15px;
+        }
+        body.light-mode .search-bar { background: #eee; border: 1px solid #ccc; color: #333; }
+        
+        .controls { display: flex; gap: 15px; align-items: center; }
+        .theme-toggle { 
+            background: #222; border: 2px solid #d4af37; padding: 8px 15px; 
+            border-radius: 30px; cursor: pointer; color: #d4af37; font-weight: bold; transition: 0.3s;
+        }
+        .theme-toggle:hover { background: #d4af37; color: #000; }
+        
+        /* تصميم أيقونة الكارت مع الـ Badge */
+        .cart-container { position: relative; cursor: pointer; display: flex; align-items: center; }
+        .cart-icon { font-size: 28px; transition: 0.3s; }
+        .cart-icon:hover { transform: scale(1.2); }
+        #cart-count { 
+            position: absolute; top: -5px; right: -10px; background: #ff4d4d; color: white; 
+            border-radius: 50%; padding: 2px 7px; font-size: 12px; font-weight: bold; display: none; 
+        }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        .card { background: #111; padding: 15px; border-radius: 15px; text-align: center; border: 1px solid #333; transition: 0.4s; cursor: pointer; }
+        body.light-mode .card { background: #fff; border: 1px solid #ddd; }
+        .card:hover { transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 10px 20px rgba(212,175,55,0.3); }
+        .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; }
+        .card h3 { margin-top: 15px; color: #d4af37; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">Scentra</div>
+        <input type="text" class="search-bar" id="search" placeholder="Search for perfumes..." onkeyup="searchPerfume()">
+        <div class="controls">
+            <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+            <div class="cart-container" onclick="location.href='cart.html'">
+                <div class="cart-icon">🛒</div>
+                <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="grid" id="perfume-grid">
+        <div class="card" onclick="location.href='product.html?id=1'"><img src="images/perfume 1.jpg"><h3>Stronger With You</h3></div>
+        <div class="card" onclick="location.href='product.html?id=2'"><img src="images/perfume 2.jpg"><h3>Sauvage</h3></div>
+        <div class="card" onclick="location.href='product.html?id=3'"><img src="images/perfume 3.webp"><h3>Valentino</h3></div>
+        <div class="card" onclick="location.href='product.html?id=4'"><img src="images/perfume 4.webp"><h3>Eclaire</h3></div>
+        <div class="card" onclick="location.href='product.html?id=5'"><img src="images/perfume 5.webp"><h3>Versace Eros</h3></div>
+        <div class="card" onclick="location.href='product.html?id=6'"><img src="images/perfume 6.webp"><h3>Myself</h3></div>
+        <div class="card" onclick="location.href='product.href?id=7'"><img src="images/perfume 7.jpg"><h3>Libre</h3></div>
+        <div class="card" onclick="location.href='product.html?id=8'"><img src="images/perfume 8.jpg"><h3>Burberry</h3></div>
+        <div class="card" onclick="location.href='product.html?id=9'"><img src="images/perfume 9.webp"><h3>Xerjoff</h3></div>
+        <div class="card" onclick="location.href='product.html?id=10'"><img src="images/perfume 10.webp"><h3>Wild Colt</h3></div>
+        <div class="card" onclick="location.href='product.html?id=11'"><img src="images/perfume 11.webp"><h3>Acqua Di Gio</h3></div>
+        <div class="card" onclick="location.href='product.html?id=12'"><img src="images/perfume 12.webp"><h3>Jean Paul</h3></div>
+        <div class="card" onclick="location.href='product.html?id=13'"><img src="images/perfume 13.webp"><h3>Ombre Nomade</h3></div>
+    </div>
+
+    <script>
+        // دالة البحث
+        function searchPerfume() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                cards[i].style.display = name.includes(input) ? "" : "none";
+            }
+        }
+
+        // دالة التبديل
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+        if(localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); }
+
+        // دالة تحديث عدد الكارت
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let countElement = document.getElementById('cart-count');
+            if (cart.length > 0) {
+                countElement.innerText = cart.length;
+                countElement.style.display = 'block';
+            } else {
+                countElement.style.display = 'none';
+            }
+        }
+        updateCartCount();
+    </script>
+</body>
+</html>
