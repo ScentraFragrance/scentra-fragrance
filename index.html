@@ -67,44 +67,54 @@
 
     <script>
         const products = [
-            { id: 1, name: "Stronger With You", img: "images/perfume 1.jpg" },
-            { id: 2, name: "Sauvage", img: "images/perfume 2.jpg" },
-            { id: 3, name: "Valentino", img: "images/perfume 3.webp" },
-            { id: 4, name: "Eclaire", img: "images/perfume 4.webp" },
-            { id: 5, name: "Versace Eros", img: "images/perfume 5.webp" },
-            { id: 6, name: "Myself", img: "images/perfume 6.webp" },
-            { id: 7, name: "Libre", img: "images/perfume 7.jpg" },
-            { id: 8, name: "Burberry", img: "images/perfume 8.jpg" },
-            { id: 9, name: "Xerjoff", img: "images/perfume 9.webp" },
-            { id: 10, name: "Wild Colt", img: "images/perfume 10.webp" },
-            { id: 11, name: "Acqua Di Gio", img: "images/perfume 11.webp" },
-            { id: 12, name: "Jean Paul", img: "images/perfume 12.webp" },
-            { id: 13, name: "Ombre Nomade", img: "images/perfume 13.webp" },
-            { id: 14, name: "Assaf Garden Musk", img: "images/perfume 14.jpeg" },
-            { id: 15, name: "Black Afgano", img: "images/perfume 15.jpeg" },
-            { id: 16, name: "LV Moon Tale", img: "images/perfume 16.jpeg" },
-            { id: 17, name: "Dominican Tobacco", img: "images/perfume 17.jpeg" },
-            { id: 18, name: "Lattafa Sehr", img: "images/perfume 18.jpeg" },
-            { id: 19, name: "Black Carbon Diamond", img: "images/perfume 19.jpeg" },
-            { id: 20, name: "Yara Candy", img: "images/perfume 20.jpeg" },
-            { id: 21, name: "Yara Original", img: "images/perfume 21.jpeg" },
-            { id: 22, name: "Mexican Tobacco", img: "images/perfume 22.jpeg" },
-            { id: 23, name: "Tom Ford Tobacco Vanille", img: "images/perfume 23.jpeg" },
-            { id: 24, name: "Stronger With You Tobacco", img: "images/perfume 24.jpeg" },
-            { id: 25, name: "Xerjoff More Than Words", img: "images/perfume 26.jpeg" },
-            { id: 26, name: "Bleu de Chanel", img: "images/perfume 25.jpeg" },
-            { id: 27, name: "Valentino Donna", img: "images/perfume 27.jpeg" }
-        ];
+    { id: 1, name: "Stronger With You", img: "images/perfume 1.jpg" },
+    { id: 2, name: "Sauvage", img: "images/perfume 2.jpg" },
+    { id: 3, name: "Valentino", img: "images/perfume 3.webp" },
+    { id: 4, name: "Eclaire", img: "images/perfume 4.webp" },
+    { id: 5, name: "Versace Eros", img: "images/perfume 5.webp" },
+    { id: 6, name: "Myself", img: "images/perfume 6.webp" },
+    { id: 7, name: "Libre", img: "images/perfume 7.jpg" },
+    { id: 8, name: "Burberry", img: "images/perfume 8.jpg" },
+    { id: 9, name: "Xerjoff", img: "images/perfume 9.webp" },
+    { id: 10, name: "Wild Colt", img: "images/perfume 10.webp" },
+    { id: 11, name: "Acqua Di Gio", img: "images/perfume 11.webp" },
+    { id: 12, name: "Jean Paul", img: "images/perfume 12.webp" },
+    { id: 13, name: "Ombre Nomade", img: "images/perfume 13.webp" },
+    { id: 14, name: "Assaf Garden Musk", img: "images/perfume 14.jpeg" },
+    { id: 15, name: "Black Afgano", img: "images/perfume 15.jpeg" },
+    { id: 16, name: "LV Moon Tale", img: "images/perfume 16.jpeg" },
+    { id: 17, name: "Dominican Tobacco", img: "images/perfume 17.jpeg" },
+    { id: 18, name: "Lattafa Sehr", img: "images/perfume 18.jpeg" },
+    { id: 19, name: "Black Carbon Diamond", img: "images/perfume 19.jpeg" },
+    { id: 20, name: "Yara Candy", img: "images/perfume 20.jpeg" },
+    { id: 21, name: "Yara Original", img: "images/perfume 21.jpeg" },
+    { id: 22, name: "Mexican Tobacco", img: "images/perfume 22.jpeg" },
+    { id: 23, name: "Tom Ford Tobacco Vanille", img: "images/perfume 23.jpeg" },
+    { id: 24, name: "Stronger With You Tobacco", img: "images/perfume 24.jpeg" },
+    { id: 25, name: "Xerjoff More Than Words", img: "images/perfume 26.jpeg" },
+    { id: 26, name: "Bleu de Chanel", img: "images/perfume 25.jpeg" },
+    { id: 27, name: "Valentino Donna", img: "images/perfume 27.jpeg" },
+    // العطور الجديدة
+    { id: 28, name: "Stronger With You Intensely", img: "images/perfume28.jpg" },
+{ id: 29, name: "YSL Y Men", img: "images/perfume29.jpeg" },
+{ id: 30, name: "YSL Libre Berry", img: "images/perfume30.jpeg" },
+{ id: 31, name: "Valentino Born In Roma", img: "images/perfume31.jpeg" },
+{ id: 32, name: "YSL Libre", img: "images/perfume32.jpeg" },
+{ id: 33, name: "Si Passione Eclat", img: "images/perfume33.jpeg" },
+{ id: 34, name: "Prada Paradoxe", img: "images/perfume34.jpeg" },
+{ id: 35, name: "Miss Dior", img: "images/perfume35.jpeg" },
+{ id: 36, name: "La Vie Est Belle", img: "images/perfume36.jpeg" }
+];
 
-        const grid = document.getElementById('perfume-grid');
-        products.forEach(p => {
-            grid.innerHTML += `
-                <div class="card" onclick="location.href='product.html?id=${p.id}'">
-                    <img src="${p.img}">
-                    <h3>${p.name}</h3>
-                </div>
-            `;
-        });
+const grid = document.getElementById('perfume-grid');
+products.forEach(p => {
+    grid.innerHTML += `
+        <div class="card" onclick="location.href='product.html?id=${p.id}'">
+            <img src="${p.img}">
+            <h3>${p.name}</h3>
+        </div>
+    `;
+});
 
         function searchPerfume() {
             let input = document.getElementById('search').value.toLowerCase();
